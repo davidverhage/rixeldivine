@@ -156,3 +156,6 @@ Temporary Items
 
 # Skip all env files
 .env
+
+.well-known
+.idea

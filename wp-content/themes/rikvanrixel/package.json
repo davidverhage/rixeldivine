@@ -1,0 +1,42 @@
+{
+  "name": "rikvanrixel",
+  "version": "1.0.0",
+  "scripts": {
+    "preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "browser-sync": "^1.9.2",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^5.1.7",
+    "graceful-fs": "3.0.12",
+    "gulp": "4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-deporder": "^1.2.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-postcss": "^9.0.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-strip-debug": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^1.0.0",
+    "postcss-assets": "^6.0.0",
+    "yargs": "17.5.1"
+  },
+  "browserslist": {
+    "production": [
+      "> 1%",
+      "ie 10"
+    ],
+    "modern": [
+      "last 1 chrome version",
+      "last 1 firefox version"
+    ],
+    "ssr": [
+      "node 12"
+    ]
+  },
+  "dependencies": {
+    "gulp-replace": "^1.1.3"
+  }
+}
