@@ -1,0 +1,86 @@
+html, body {
+  margin: 0;
+}
+
+a, a:visited, a:active {
+  color: unset;
+}
+
+input, textarea {
+  line-height: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+pre, code, kbd {
+  font-size: inherit;
+}
+
+textarea:focus, input:focus, button:focus, select:focus {
+  outline: none;
+}
+
+
+/* GENERAL HELPERS */
+.fa-left   { text-align: left; }
+.fa-center { text-align: center; }
+.fa-right  { text-align: right; }
+
+
+/* BASIC LAYOUT & GENERAL FORMATTING */
+html {
+  height: 100%;
+}
+body {
+  font-family: sweet-sans-pro, Verdana, Helvetica, sans-serif;
+  color: #333;
+  background-color: #FDFDFD;
+  line-height: 1.4; /* problematic, sets also H1 to fixed value! */
+
+  min-height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+body > * {
+  flex: none;
+}
+
+main, footer {
+  padding: 1.5rem;
+}
+
+code {
+  font-family: "Lucida Console", Monaco, monospace, monospace;
+}
+
+/* MAIN */
+main {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80rem;
+  margin: auto;
+}
+main > * {
+  flex: none;
+}
+
+
+
+/* FOOTER */
+
+footer {
+  position: relative;
+  margin-top: 3.5rem;
+  border-top: 1px solid silver;
+  background-color: #F4F4F4;
+  color: #888;
+  font-size: 0.8rem;
+  z-index: 1;
+}
+footer small {
+  margin-right: 1vw;
+}

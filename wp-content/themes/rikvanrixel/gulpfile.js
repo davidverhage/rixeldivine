@@ -1,7 +1,6 @@
 // Initialize modules
 // Importing specific gulp API functions lets us write them below as series() instead of gulp.series()
 const { src, dest, watch, series, parallel } = require('gulp');
-// Importing all the Gulp-related packages we want to use
 const sass = require('gulp-sass')(require('sass'));
 const concat = require('gulp-concat');
 const terser = require('gulp-terser');
@@ -30,21 +29,13 @@ function jsTask() {
 	return src(
 		[
 			files.jsPath,
-			//,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
+			'!' + 'includes/js/jquery.min.js', // to exclude any specific files
 		],
 		{ sourcemaps: true }
 	)
 		.pipe(concat('all.js'))
 		.pipe(terser())
 		.pipe(dest('dist', { sourcemaps: '.' }));
-}
-
-// Cachebust
-function cacheBustTask() {
-	var cbString = new Date().getTime();
-	return src(['index.html'])
-		.pipe(replace(/cb=\d+/g, 'cb=' + cbString))
-		.pipe(dest('.'));
 }
 
 // Browsersync to spin up a local server
@@ -69,19 +60,14 @@ function browserSyncReload(cb) {
 	cb();
 }
 
-// Watch task: watch SCSS and JS files for changes
-// If any change, run scss and js tasks simultaneously
 function watchTask() {
 	watch(
 		[files.scssPath, files.jsPath],
 		{ interval: 1000, usePolling: true }, //Makes docker work
-		series(parallel(scssTask, jsTask), cacheBustTask)
+		series(parallel(scssTask, jsTask))
 	);
 }
 
-// Browsersync Watch task
-// Watch HTML file for change and reload browsersync server
-// watch SCSS and JS files for changes, run scss and js tasks simultaneously and update browsersync
 function bsWatchTask() {
 	//watch('index.php', browserSyncReload);
 	watch(
@@ -91,13 +77,8 @@ function bsWatchTask() {
 	);
 }
 
-// Export the default Gulp task so it can be run
-// Runs the scss and js tasks simultaneously
-// then runs cacheBust, then watch task
 exports.default = series(parallel(scssTask, jsTask), watchTask);
 
-// Runs all of the above but also spins up a local Browsersync server
-// Run by typing in "gulp bs" on the command line
 exports.bs = series(
 	parallel(scssTask, jsTask),
 	browserSyncServe,

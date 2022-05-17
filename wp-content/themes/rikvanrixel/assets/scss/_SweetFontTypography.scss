@@ -1,0 +1,120 @@
+//Sweet Sans Pro Extra Light
+.normal, body {
+  font-family: sweet-sans-pro, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+//Sweet Sans Pro Extra Light Italic
+.normal-italic, body i, *.italic {
+  font-family: sweet-sans-pro, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+//Sweet Sans Pro Medium
+.medium {
+  font-family: sweet-sans-pro, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+//Sweet Sans Pro Medium Italic
+.medium-italic {
+  font-family: sweet-sans-pro, sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+//Sweet Sans Pro Heavy
+.heavy {
+  font-family: sweet-sans-pro, sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+/* ------ The Mixin ------ */
+@mixin typography($font-size){
+  $base-line-height: $font-size * $ratio;
+  $margin: $base-line-height;
+  body{
+    font-size: $font-size;
+    line-height: ($font-size * $ratio);
+  }
+  h1{
+    font-size: ((($font-size * $ratio) * $ratio) * $ratio);
+    line-height: ($font-size * $ratio) * 3;
+    margin-top: $margin * 2;
+    margin-bottom: $margin;
+  }
+
+  h2{
+    font-size: (($font-size * $ratio) * $ratio);
+    line-height: ($font-size * $ratio) * 2;
+    margin-top: $margin;
+    margin-bottom: $margin;
+  }
+
+  h3{
+    font-size: $font-size * $ratio;
+    line-height: ($font-size * $ratio);
+    margin-top: $margin;
+    margin-bottom: $margin;
+  }
+  h4{
+    font-size: $font-size;
+    line-height: ($font-size * $ratio);
+    margin-top: $margin;
+    margin-bottom: $margin;
+  }
+  p, ul, ol, pre, table, blockquote{
+    margin-top: $margin;
+    margin-bottom: $margin;
+  }
+}
+
+/* ------ The Set Up ------ */
+//Step 1) Pick your ratio
+//example: 1.618 = Golden Ratio
+$ratio: 1.618;
+
+//Step 2) Pick your base font size per breakpoint using the mixin
+//example: @include typography(16px);
+
+//0 - first breakpoint
+@media (max-width: 299px){
+  @include typography(12px);
+}
+//start of mobile first breakpoints
+@media (min-width: 300px){
+  @include typography(14px);
+}
+@media(min-width: 600px){
+  @include typography(15px);
+}
+@media(min-width: 800px){
+  @include typography(16px);
+}
+@media(min-width: 1000px){
+  @include typography(19px);
+}
+@media(min-width: 1200px){
+  @include typography(21px);
+}
+@media(min-width: 1400px){
+  @include typography(23px);
+}
+@media(min-width: 1600px){
+  @include typography(25px);
+}
+
+html{
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizelegibility;
+  -moz-osx-font-smoothing: grayscale;
+  color: rgb(33,33,33);
+}
