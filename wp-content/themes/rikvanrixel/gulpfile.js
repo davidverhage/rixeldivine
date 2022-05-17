@@ -9,7 +9,7 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const replace = require('gulp-replace');
-const browsersync = require('browser-sync').create();
+const browsersync = require('browser-sync');
 
 // File paths
 const files = {
@@ -65,7 +65,7 @@ function browserSyncServe(cb) {
 }
 function browserSyncReload(cb) {
 	// reloads browsersync server
-	browsersync.reload();
+	//browsersync.reload();
 	cb();
 }
 
@@ -83,24 +83,23 @@ function watchTask() {
 // Watch HTML file for change and reload browsersync server
 // watch SCSS and JS files for changes, run scss and js tasks simultaneously and update browsersync
 function bsWatchTask() {
-	watch('index.php', browserSyncReload);
+	//watch('index.php', browserSyncReload);
 	watch(
 		[files.scssPath, files.jsPath],
 		{ interval: 1000, usePolling: true }, //Makes docker work
-		series(parallel(scssTask, jsTask), cacheBustTask, browserSyncReload)
+		series(parallel(scssTask, jsTask), browserSyncReload)
 	);
 }
 
 // Export the default Gulp task so it can be run
 // Runs the scss and js tasks simultaneously
 // then runs cacheBust, then watch task
-exports.default = series(parallel(scssTask, jsTask), cacheBustTask, watchTask);
+exports.default = series(parallel(scssTask, jsTask), watchTask);
 
 // Runs all of the above but also spins up a local Browsersync server
 // Run by typing in "gulp bs" on the command line
 exports.bs = series(
 	parallel(scssTask, jsTask),
-	cacheBustTask,
 	browserSyncServe,
 	bsWatchTask
 );
