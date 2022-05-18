@@ -1,10 +1,10 @@
 <?php
-//Loading all php files from the functions/ folder
-//this keeps your wordpress functions file clean
-//and you can split up your function build up by parsing functionality in different files.
+/**
+ * Load any and all php files stored in the lib folder
+ */
 
-$folder =   get_template_directory()."/lib/";
-$files = glob($folder."*.php"); // return array files
-foreach($files as $phpFile){
-	require_once("$phpFile");
-}
+	$folder = get_template_directory() .'/library/';
+	$files  = glob( $folder . "*.php" ); // return array files
+	foreach ( $files as $phpFile ) {
+		require_once( "$phpFile" );
+	}

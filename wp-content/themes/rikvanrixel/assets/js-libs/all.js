@@ -1,0 +1,2 @@
+!function(e){console.log("lets go!");let o=document.querySelector(".height-guide").offsetHeight;e(".height-follower-23").css({minHeight:.66666666666*o}),e(".height-follower-13").css({maxHeight:.33333333333*o}),console.log("parentblock height",.66666666666*o)}(jQuery);
+//# sourceMappingURL=all.js.map

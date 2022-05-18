@@ -12,8 +12,8 @@ const browsersync = require('browser-sync');
 
 // File paths
 const files = {
-	scssPath: 'assets/scss/**/*.scss',
-	jsPath: 'assets/xjs/**/*.js',
+	scssPath: 'assets/src/scss/**/*.scss',
+	jsPath: 'assets/src/javascript/**/*.js',
 };
 
 // Sass task: compiles the style.scss file into style.css
@@ -21,7 +21,7 @@ function scssTask() {
 	return src(files.scssPath, { sourcemaps: true }) // set source and turn on sourcemaps
 		.pipe(sass()) // compile SCSS to CSS
 		.pipe(postcss([autoprefixer(), cssnano()])) // PostCSS plugins
-		.pipe(dest('dist', { sourcemaps: '.' })); // put final CSS in dist folder with sourcemap
+		.pipe(dest('assets/css-libs', { sourcemaps: '.' })); // put final CSS in dist folder with sourcemap
 }
 
 // JS task: concatenates and uglifies JS files to script.js
@@ -35,7 +35,7 @@ function jsTask() {
 	)
 		.pipe(concat('all.js'))
 		.pipe(terser())
-		.pipe(dest('dist', { sourcemaps: '.' }));
+		.pipe(dest('assets/js-libs', { sourcemaps: '.' }));
 }
 
 // Browsersync to spin up a local server

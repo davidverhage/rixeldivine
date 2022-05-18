@@ -1,0 +1,21 @@
+html *, body * {
+  font-size: 100%;
+  font-family: sweet-sans-pro,sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+body {
+  line-height: normal;
+  color: #454f59;
+  overflow-x: hidden;
+}
+
+.text-heavy, .text-bold {
+  font-family: sweet-sans-pro,sans-serif;
+}
+.text-heavy {
+  font-weight: 700!important;
+}
